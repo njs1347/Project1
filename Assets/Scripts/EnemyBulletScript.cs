@@ -2,44 +2,29 @@
 using System.Collections;
 
 public class EnemyBulletScript : MonoBehaviour {
-	public float speed = .5f;
+	public float speed = 1f;
 	public Vector3 targetPos;
 	bool left = false;
 	bool up = false;
 	// Use this for initialization
 	void Start () {
-		gameObject.transform.LookAt (targetPos);
-		if (targetPos.y > transform.position.y) {
-			up = true;
-		} 
-		else {
-			up = false;
+		if (targetPos.y < transform.position.y) {
+			//targetPos.y = targetPos.y * -1;
+			speed = -speed;
 		}
+		//2D Equivalent to LookAt();
+		Quaternion rotation = Quaternion.LookRotation
+			(targetPos - transform.position, transform.TransformDirection(Vector3.up));
+		transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
-		if (targetPos.x > transform.position.x) {
-			left = false;
-		}
+		Destroy(gameObject, 5f);
 
-		else {
-			left = true;
-		}
-		//transform.Rotation =  Quaternion.Euler(new Vector3(0,0,));
-		transform.rotation = Quaternion.Euler(new Vector3(0,0, transform.rotation.z));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (left) {
-			transform.Translate (-Time.deltaTime *speed,0,0);
-		}
-		else{transform.Translate (Time.deltaTime *speed,0,0);}
-
-		if (!up) {
-			transform.Translate (0, -Time.deltaTime * speed, 0);
-		} 
-		else {
-			transform.Translate (0, Time.deltaTime * speed, 0);
-		}
+		
+		transform.Translate (transform.up * speed * Time.deltaTime * - 1);
 
 	}
 }

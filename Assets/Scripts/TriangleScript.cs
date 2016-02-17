@@ -4,8 +4,8 @@ using System.Collections;
 public class TriangleScript : MonoBehaviour {
 	int pathNum;
 	float currentPos;
-	float speed = .15f;
-	float rotationSpeed = 2.5f;
+	float speed = .10f;
+	float rotationSpeed = 1.5f;
 	Vector2 position;
 
 	float health = 3;
@@ -50,7 +50,7 @@ public class TriangleScript : MonoBehaviour {
 
 		//ENEMY SHOOTING
 		if (TimeSpawned + 1 < Time.time && canIShoot) {
-			for(int i = 0;i<=2;i++){
+			for(int i = 0;i<3;i++){
 				Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 				if (i == 0) {
 					//bullet.transform.LookAt(corner1.transform);
@@ -60,9 +60,11 @@ public class TriangleScript : MonoBehaviour {
 					//bullet.transform.LookAt(corner2.transform);
 					bullet.GetComponent<EnemyBulletScript>().targetPos = corner2.transform.position;
 				}
-				else{
+				else if(i==2){
 					//bullet.transform.LookAt(corner3.transform);
 					bullet.GetComponent<EnemyBulletScript>().targetPos = corner3.transform.position;
+					//bullet.GetComponent<EnemyBulletScript> ().targetPos.x = bullet.GetComponent<EnemyBulletScript> ().targetPos.x * -1;
+					//bullet.GetComponent<EnemyBulletScript> ().speed = -bullet.GetComponent<EnemyBulletScript> ().speed;
 				}
 			}
 			canIShoot = false;
