@@ -24,7 +24,7 @@ public class TriangleScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		pathNum = 1;
+		pathNum = 2;
 		TimeSpawned = Time.time;
 		//corner1 = Transform.FindChild ("top");
 		//corner2 = Transform.FindChild ("left");
@@ -32,6 +32,10 @@ public class TriangleScript : MonoBehaviour {
 		corner1 = transform.FindChild ("top");
 		corner2 = transform.FindChild ("left");
 		corner3 = transform.FindChild ("right");
+		if (pathNum == 2) {
+			transform.position = new Vector2(12,7);
+			speed = 3f;
+		}
 
 	}
 	
@@ -46,6 +50,17 @@ public class TriangleScript : MonoBehaviour {
 
 			gameObject.transform.position = new Vector2(transform.position.x,currentPos);
 		}
+
+		if (pathNum == 2) {
+			if(transform.position.x>0f)
+			{
+				transform.position = new Vector2(transform.position.x-speed*Time.deltaTime*2,transform.position.y-speed*Time.deltaTime);
+			}
+			if(transform.position.x<=0f){
+				transform.position = new Vector2(transform.position.x-speed*Time.deltaTime*2,transform.position.y+speed*Time.deltaTime);
+			}
+		}
+
 		gameObject.transform.Rotate (new Vector3(0,0,rotationSpeed));
 
 		//ENEMY SHOOTING
