@@ -4,7 +4,7 @@ using System.Collections;
 public class TriangleScript : MonoBehaviour {
 	int pathNum;
 	float currentPos;
-	float speed = .10f;
+	float speed = 4f;
 	float rotationSpeed = 1.5f;
 	Vector2 position;
 
@@ -24,7 +24,9 @@ public class TriangleScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		pathNum = 2;
+		
+		pathNum = Random.Range (1,5);
+		//pathNum = 4;
 		TimeSpawned = Time.time;
 		//corner1 = Transform.FindChild ("top");
 		//corner2 = Transform.FindChild ("left");
@@ -32,9 +34,21 @@ public class TriangleScript : MonoBehaviour {
 		corner1 = transform.FindChild ("top");
 		corner2 = transform.FindChild ("left");
 		corner3 = transform.FindChild ("right");
+		if (pathNum == 1) {
+			
+			speed = 5f;
+		}
 		if (pathNum == 2) {
 			transform.position = new Vector2(12,7);
 			speed = 3f;
+		}
+		if (pathNum == 3) {
+			transform.position = new Vector2(10,7);
+			speed = 6f;
+		}
+		if (pathNum == 4) {
+			transform.position = new Vector2(-10,-7);
+			speed = 6f;
 		}
 
 	}
@@ -45,10 +59,7 @@ public class TriangleScript : MonoBehaviour {
 
 		//ENEMY PATHING
 		if (pathNum == 1) {
-			currentPos = gameObject.transform.position.y;
-			currentPos -= speed;
-
-			gameObject.transform.position = new Vector2(transform.position.x,currentPos);
+			gameObject.transform.position = new Vector2(transform.position.x,transform.position.y - speed * Time.deltaTime);
 		}
 
 		if (pathNum == 2) {
@@ -58,6 +69,27 @@ public class TriangleScript : MonoBehaviour {
 			}
 			if(transform.position.x<=0f){
 				transform.position = new Vector2(transform.position.x-speed*Time.deltaTime*2,transform.position.y+speed*Time.deltaTime);
+				if(transform.position.x<-20){Destroy (gameObject);}
+			}
+
+		}
+
+		if (pathNum == 3) {
+			if (transform.position.y > 0) {
+				transform.position = new Vector2(transform.position.x,transform.position.y-speed*Time.deltaTime);
+			}
+			if (transform.position.y <= 0) {
+				transform.position = new Vector2(transform.position.x-speed*Time.deltaTime,transform.position.y);
+				if(transform.position.x<-20){Destroy (gameObject);}
+			}
+		}
+		if (pathNum == 4) {
+			if (transform.position.y < 0) {
+				transform.position = new Vector2(transform.position.x,transform.position.y+speed*Time.deltaTime);
+			}
+			if (transform.position.y >= 0) {
+				transform.position = new Vector2(transform.position.x+speed*Time.deltaTime,transform.position.y);
+				if(transform.position.x>20){Destroy (gameObject);}
 			}
 		}
 
