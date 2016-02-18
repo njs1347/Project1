@@ -13,7 +13,7 @@ public class SpawnerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > spawnTimer) {
-			spawnTimer += 4;
+			spawnTimer += 2;
 			if (spawnNumber == 1) {
 				//SPAWN TRIANGLE ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);

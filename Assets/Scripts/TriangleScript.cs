@@ -13,6 +13,7 @@ public class TriangleScript : MonoBehaviour {
 	public GameObject bullet;
 
 	float TimeSpawned;
+	float shootTimer;
 
 	bool canIShoot = true;
 	public Transform corner1;
@@ -20,14 +21,16 @@ public class TriangleScript : MonoBehaviour {
 	public Transform corner3;
 
 	public EnemyBulletScript bulScript;
+	Vector3 bulDirection;
 
 
 	// Use this for initialization
 	void Start () {
 		
-		pathNum = Random.Range (1,5);
-		//pathNum = 4;
+		pathNum = Random.Range (1,9);
+		//pathNum = 8;
 		TimeSpawned = Time.time;
+		shootTimer = Time.time;
 		//corner1 = Transform.FindChild ("top");
 		//corner2 = Transform.FindChild ("left");
 		//corner3 = Transform.FindChild ("right");
@@ -47,9 +50,27 @@ public class TriangleScript : MonoBehaviour {
 			speed = 6f;
 		}
 		if (pathNum == 4) {
-			transform.position = new Vector2(-10,-7);
+			transform.position = new Vector2(-10,-10.5f);
 			speed = 6f;
 		}
+
+		//topleft to botright
+		if (pathNum == 5) {
+			transform.position = new Vector2 (-19,9);
+		}
+		//botright to top left
+		if (pathNum == 6) {
+			transform.position = new Vector2 (19,-9);
+		}
+
+		if (pathNum == 7) {
+			transform.position = new Vector2 (19,9);
+		}
+
+		if (pathNum == 8) {
+			transform.position = new Vector2 (-19,-9);
+		}
+
 
 	}
 	
@@ -58,10 +79,12 @@ public class TriangleScript : MonoBehaviour {
 		
 
 		//ENEMY PATHING
+		//Straight down
 		if (pathNum == 1) {
 			gameObject.transform.position = new Vector2(transform.position.x,transform.position.y - speed * Time.deltaTime);
 		}
 
+		//V shaped from top
 		if (pathNum == 2) {
 			if(transform.position.x>0f)
 			{
@@ -73,7 +96,7 @@ public class TriangleScript : MonoBehaviour {
 			}
 
 		}
-
+		//top right L to the left
 		if (pathNum == 3) {
 			if (transform.position.y > 0) {
 				transform.position = new Vector2(transform.position.x,transform.position.y-speed*Time.deltaTime);
@@ -83,6 +106,7 @@ public class TriangleScript : MonoBehaviour {
 				if(transform.position.x<-20){Destroy (gameObject);}
 			}
 		}
+		//bot left L to the right
 		if (pathNum == 4) {
 			if (transform.position.y < 0) {
 				transform.position = new Vector2(transform.position.x,transform.position.y+speed*Time.deltaTime);
@@ -92,30 +116,58 @@ public class TriangleScript : MonoBehaviour {
 				if(transform.position.x>20){Destroy (gameObject);}
 			}
 		}
+		//top left to botright
+		if (pathNum == 5) {
+			transform.position = new Vector2(transform.position.x+speed*Time.deltaTime*1.5f,transform.position.y-speed*Time.deltaTime);
+		}
+		//bot right to top left
+		if (pathNum == 6) {
+			transform.position = new Vector2(transform.position.x-speed*Time.deltaTime*1.5f,transform.position.y+speed*Time.deltaTime);
+		}
+		//top right to bot left
+		if (pathNum == 7) {
+			transform.position = new Vector2(transform.position.x-speed*Time.deltaTime*1.5f,transform.position.y-speed*Time.deltaTime);
+		}
+		//bot left to top right
+		if (pathNum == 8) {
+			transform.position = new Vector2(transform.position.x+speed*Time.deltaTime*1.5f,transform.position.y+speed*Time.deltaTime);
+		}
+
 
 		gameObject.transform.Rotate (new Vector3(0,0,rotationSpeed));
 
 		//ENEMY SHOOTING
-		if (TimeSpawned + 1 < Time.time && canIShoot) {
+		if (shootTimer + 1.5f < Time.time && canIShoot) {
 			for(int i = 0;i<3;i++){
 				Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 				if (i == 0) {
 					//bullet.transform.LookAt(corner1.transform);
-					bullet.GetComponent<EnemyBulletScript>().targetPos = corner1.transform.position;
+					bulDirection = (corner1.transform.position - transform.position).normalized;
+					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 				else if (i == 1) {
 					//bullet.transform.LookAt(corner2.transform);
-					bullet.GetComponent<EnemyBulletScript>().targetPos = corner2.transform.position;
+					//bullet.GetComponent<EnemyBulletScript>().targetPos = corner2.transform.position;
+					bulDirection = (corner2.transform.position - transform.position).normalized;
+					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 				else if(i==2){
 					//bullet.transform.LookAt(corner3.transform);
-					bullet.GetComponent<EnemyBulletScript>().targetPos = corner3.transform.position;
+					//bullet.GetComponent<EnemyBulletScript>().targetPos = corner3.transform.position;
 					//bullet.GetComponent<EnemyBulletScript> ().targetPos.x = bullet.GetComponent<EnemyBulletScript> ().targetPos.x * -1;
 					//bullet.GetComponent<EnemyBulletScript> ().speed = -bullet.GetComponent<EnemyBulletScript> ().speed;
+
+					bulDirection = (corner3.transform.position - transform.position).normalized;
+					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 			}
-			canIShoot = false;
+
+			shootTimer = Time.time;
 		}
+		/*if (((Time.time-TimeSpawned)+1.6)%1.6 == 0) {
+			canIShoot = true;
+		}*/
+
 
 		//DESTROY CHECKS
 		if (health == 0) {Destroy (gameObject);}
