@@ -27,4 +27,14 @@ public class EnemyBulletScript : MonoBehaviour {
 		transform.Translate (transform.up * speed * Time.deltaTime * - 1);
 
 	}
+
+	void OnCollisionEnter2D(Collision2D coll){
+		if (coll.gameObject.tag == "Player") {
+			Destroy (gameObject);
+		}
+		if (coll.gameObject.tag == "PlayerBullet") {
+			Destroy (gameObject);
+		}
+
+	}
 }

@@ -5,7 +5,7 @@ public class PlayerScript : MonoBehaviour {
 
 	public GameObject PlayerBullet;
 	public GameObject BulletPosition;
-
+	public float playerHealth = 5.0f;
 
 	public float speed = 10.0f;
 	
@@ -34,5 +34,25 @@ public class PlayerScript : MonoBehaviour {
 		{
 			transform.position += Vector3.down * speed * Time.deltaTime;
 		}
+
+		if (playerHealth == 0) {
+			Destroy (gameObject);
+			print ("you lose");
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D coll){
+		if (coll.gameObject.tag == "Enemy") {		//when hit by enemy
+			onHit ();
+			onHit ();	//loss 2 hp for enemy collision
+		}
+
+		if (coll.gameObject.tag == "EnemyBullet") {	//when hit by enemy bullet
+			onHit ();
+		}
+	}
+
+	void onHit (){
+		playerHealth--;
 	}
 }

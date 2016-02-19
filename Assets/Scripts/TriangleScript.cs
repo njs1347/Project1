@@ -8,7 +8,7 @@ public class TriangleScript : MonoBehaviour {
 	float rotationSpeed = 1.5f;
 	Vector2 position;
 
-	float health = 3;
+	float enemyHealth = 3;
 
 	public GameObject bullet;
 
@@ -41,7 +41,6 @@ public class TriangleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 
 		//ENEMY PATHING
 		if (pathNum == 1) {
@@ -86,16 +85,24 @@ public class TriangleScript : MonoBehaviour {
 		}
 
 		//DESTROY CHECKS
-		if (health == 0) {Destroy (gameObject);}
+		if (enemyHealth == 0) {Destroy (gameObject);}
 
 		if (transform.position.y < -10f) {
 			Destroy (gameObject);
 		}
 	}
 
-
+	void OnCollisionEnter2D(Collision2D coll){						// when hit by playerBullet
+		if (coll.gameObject.tag == "PlayerBullet") {
+			onHit ();
+		}
+		if (coll.gameObject.tag == "Player") {
+			enemyHealth = 0;
+		}
+	}
+		
 	void onHit ()
 	{
-		health--;
+		enemyHealth--;
 	}
 }
