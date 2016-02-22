@@ -6,6 +6,8 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject PlayerBullet;
 	public GameObject BulletPosition;
 
+	public GUIText youLoseText;
+
 	public float playerHealth = 5.0f;
 
 	Vector3 mousePosition;
@@ -52,9 +54,11 @@ public class PlayerScript : MonoBehaviour {
 		}
 
 
-		if (playerHealth == 0) {
+		if (playerHealth <= 0) {
+			youLoseText.text = "YOU LOSE";
 			Destroy (gameObject);
 			print ("you lose");
+
 		}
 
 		//OUT OF BOUNDS CHECK

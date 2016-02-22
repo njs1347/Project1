@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScoreKeeper : MonoBehaviour {
 	public GUIText scoreText;
-	private int score;
+	public int score;
 
 
 	// Use this for initialization

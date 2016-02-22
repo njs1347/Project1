@@ -4,7 +4,7 @@ using System.Collections;
 public class TriangleScript : MonoBehaviour {
 	int pathNum;
 	float currentPos;
-	float speed = 4f;
+	float speed = 2f;
 	float rotationSpeed = 1.5f;
 	Vector2 position;
 
@@ -29,8 +29,12 @@ public class TriangleScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
 		pathNum = Random.Range (1,9);
+		/*if (scoreKeeper.GetComponent<ScoreKeeper> ().score > 500) {
+			pathNum = Random.Range (1,9);
+		}*/
+
 		//pathNum = 8;
 		TimeSpawned = Time.time;
 		shootTimer = Time.time;
@@ -42,19 +46,19 @@ public class TriangleScript : MonoBehaviour {
 		corner3 = transform.FindChild ("right");
 		if (pathNum == 1) {
 			
-			speed = 5f;
+			speed = 4f;
 		}
 		if (pathNum == 2) {
 			transform.position = new Vector2(12,7);
-			speed = 3f;
+			speed = 2f;
 		}
 		if (pathNum == 3) {
 			transform.position = new Vector2(10,7);
-			speed = 6f;
+			speed = 4f;
 		}
 		if (pathNum == 4) {
 			transform.position = new Vector2(-10,-10.5f);
-			speed = 6f;
+			speed = 4f;
 		}
 
 		//topleft to botright
@@ -146,7 +150,7 @@ public class TriangleScript : MonoBehaviour {
 		gameObject.transform.Rotate (new Vector3(0,0,rotationSpeed));
 
 		//ENEMY SHOOTING
-		if (shootTimer + 1.5f < Time.time && canIShoot) {
+		if (shootTimer + 2.25f < Time.time && canIShoot) {
 			for(int i = 0;i<3;i++){
 				Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 				if (i == 0) {
