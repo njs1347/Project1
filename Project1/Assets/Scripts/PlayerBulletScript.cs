@@ -6,16 +6,16 @@ public class PlayerBulletScript : MonoBehaviour {
 	float speed;
 	public Vector3 buldirection = Vector3.zero;
 	public float rotateTo = 0;
+
 	// Use this for initialization
-
-
 	void Start () {
+
 		speed = 10f;
 		//print (rotateTo);
 		//transform.Rotate (0,0,rotateTo);
 
 		Destroy (gameObject, 6f);
-
+	
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,7 @@ public class PlayerBulletScript : MonoBehaviour {
 		//transform.Rotate (buldirection);
 		transform.position += buldirection * speed * Time.deltaTime;
 		/*if (transform.position.y > max.y) {
-		
+
 			Destroy (gameObject);
 
 		}*/

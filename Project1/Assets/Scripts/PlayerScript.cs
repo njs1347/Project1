@@ -5,7 +5,7 @@ public class PlayerScript : MonoBehaviour {
 
 	public GameObject PlayerBullet;
 	public GameObject BulletPosition;
-	private HealthKeeper healthKeeper;
+
 	public GUIText youLoseText;
 
 	public float playerHealth = 5.0f;
@@ -16,19 +16,7 @@ public class PlayerScript : MonoBehaviour {
 
 
 	public float speed = 10.0f;
-
-	void Start ()
-	{
-		GameObject playerHealthObject = GameObject.FindWithTag ("HealthKeeper");
-		if (playerHealthObject != null) {
-			healthKeeper = playerHealthObject.GetComponent <HealthKeeper> ();
-		}
-		if (healthKeeper == null) {
-			Debug.Log ("Can't find 'HealthKeeper' script");
-		}
-
-	}
-
+	
 	void Update ()
 	{
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
@@ -96,26 +84,10 @@ public class PlayerScript : MonoBehaviour {
 
 		if (coll.gameObject.tag == "EnemyBullet") {	//when hit by enemy bullet
 			onHit ();
-
 		}
 	}
 
 	void onHit (){
 		playerHealth--;
-		healthKeeper.SubtractOneHealth ();
-
-		if (playerHealth == 4) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.21f, 0.9f, 0.21f, 1);
-		}
-		if (playerHealth == 3) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.45f, 0.86f, 0.45f, 1);
-		}
-		if (playerHealth == 2) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.67f, 0.9f, 0.67f, 1);
-		}
-		if (playerHealth == 1) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
-		}
-
 	}
 }

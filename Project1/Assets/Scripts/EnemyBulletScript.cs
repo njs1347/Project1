@@ -6,8 +6,6 @@ public class EnemyBulletScript : MonoBehaviour {
 	public Vector3 targetPos;
 	bool left = false;
 	bool up = false;
-	private ScoreKeeper scoreKeeper;
-
 	// Use this for initialization
 	void Start () {
 		/*if (targetPos.y < transform.position.y) {
@@ -18,13 +16,6 @@ public class EnemyBulletScript : MonoBehaviour {
 		Quaternion rotation = Quaternion.LookRotation
 			(targetPos - transform.position, transform.TransformDirection(Vector3.up));
 		transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);*/
-		GameObject scoreKeeperObject = GameObject.FindWithTag ("ScoreKeeper");
-		if (scoreKeeperObject != null) {
-			scoreKeeper = scoreKeeperObject.GetComponent <ScoreKeeper> ();
-		}
-		if (scoreKeeper == null) {
-			Debug.Log ("Can't find 'ScoreKeeper' script");
-		}
 
 		Destroy(gameObject, 5f);
 
@@ -42,9 +33,7 @@ public class EnemyBulletScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		if (coll.gameObject.tag == "PlayerBullet") {
-			scoreKeeper.AddScoreSmall ();
 			Destroy (gameObject);
-
 		}
 
 	}

@@ -8,19 +8,23 @@ public class ScoreKeeper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		UpdateScore ();
 	}
+	
+	// Update is called once per frame
+	void Update () {
 
-	public void AddScoreSmall()
-	{
-		score += 1;
-		UpdateScore ();
+
 	}
 
 	public void AddScore()
 	{
-		score += 50;
+
+		print (score);
+		score  +=50;
 		UpdateScore ();
+		print (score);
 	}
 
 	void UpdateScore()

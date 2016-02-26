@@ -8,8 +8,6 @@ public class TriangleScript : MonoBehaviour {
 	float rotationSpeed = 1.5f;
 	Vector2 position;
 
-
-
 	float enemyHealth = 3;
 
 	public GameObject bullet;
@@ -31,8 +29,6 @@ public class TriangleScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-
 
 		pathNum = Random.Range (1,9);
 		/*if (scoreKeeper.GetComponent<ScoreKeeper> ().score > 500) {
@@ -209,16 +205,8 @@ public class TriangleScript : MonoBehaviour {
 	{
 		if (enemyHealth <= 1) {
 			scoreKeeper.AddScore ();
-
 		}
 		enemyHealth--;
 
-		if (enemyHealth == 2) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 0.5f, 0, 1);
-		}
-
-		if (enemyHealth == 1) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 0, 0, 1);
-		}
 	}
 }

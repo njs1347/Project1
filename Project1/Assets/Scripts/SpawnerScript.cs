@@ -20,7 +20,6 @@ public class SpawnerScript : MonoBehaviour {
 				Instantiate(triangle,
 					new Vector3(Random.Range(-8,8),9,0),
 					Quaternion.identity);
-				
 			}
 
 		}
