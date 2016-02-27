@@ -48,22 +48,24 @@ public class PlayerScript : MonoBehaviour {
 			(mousePosition - transform.position, transform.TransformDirection(Vector3.up));
 		transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
-		if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey("a"))
 		{
 			transform.position += Vector3.left * speed * Time.deltaTime;
 		}
-		if (Input.GetKey(KeyCode.RightArrow))
+		 if (Input.GetKey(KeyCode.RightArrow)||Input.GetKey("d"))
 		{
 			transform.position += Vector3.right * speed * Time.deltaTime;
 		}
-		if (Input.GetKey(KeyCode.UpArrow))
+		 if (Input.GetKey(KeyCode.UpArrow)||Input.GetKey("w"))
 		{
 			transform.position += Vector3.up * speed * Time.deltaTime;
 		}
-		if (Input.GetKey(KeyCode.DownArrow))
+		 if (Input.GetKey(KeyCode.DownArrow)||Input.GetKey("s"))
 		{
 			transform.position += Vector3.down * speed * Time.deltaTime;
 		}
+
+
 
 
 		if (playerHealth <= 0) {

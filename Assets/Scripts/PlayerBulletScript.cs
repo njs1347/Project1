@@ -14,6 +14,8 @@ public class PlayerBulletScript : MonoBehaviour {
 		//print (rotateTo);
 		//transform.Rotate (0,0,rotateTo);
 
+		transform.position += buldirection * .725f;
+
 		Destroy (gameObject, 6f);
 
 	}
