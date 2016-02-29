@@ -56,7 +56,7 @@ public class SpawnerScript : MonoBehaviour {
 			//spawnNumber = 15;
 
 			spawnTimer += spawnCooldown;
-			if (spawnNumber >=25 ) {
+			if (spawnNumber >=25 ) {	//75% chance
 				//SPAWN TRIANGLE ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);
 				Instantiate(triangle,
@@ -65,11 +65,11 @@ public class SpawnerScript : MonoBehaviour {
 				
 			}
 
-			if (spawnNumber <25) {
+			if (spawnNumber <25) {		//25% chance
 				//SPAWN BOMBER ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);
 				Instantiate(bomber,
-					new Vector3(Random.Range(-8,8),Random.Range(-9,9),0),
+					new Vector3(Random.Range(-16,16),Random.Range(-7,7),0),
 					Quaternion.identity);
 
 			}

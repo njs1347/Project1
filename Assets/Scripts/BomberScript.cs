@@ -6,6 +6,8 @@ public class BomberScript : MonoBehaviour {
 	Vector3 bulDirection = new Vector3(.4f,.4f,0);
 	bool canIShoot = true;
 
+
+
 	float TimeSpawned;
 	float shootTimer;
 
@@ -18,6 +20,7 @@ public class BomberScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		TimeSpawned = Time.time;
+		shootTimer = Time.time;
 
 		GameObject scoreKeeperObject = GameObject.FindWithTag ("ScoreKeeper");
 		if (scoreKeeperObject != null) {
@@ -31,55 +34,49 @@ public class BomberScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (shootTimer + 4f < Time.time && canIShoot) {
-			
+		if (shootTimer + 4f < Time.time) {
+
+					GameObject Clone = (GameObject)Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+					
+					bulDirection = new Vector3(-.4f,-.4f,0);
+					
+					print ("neg neg" + bulDirection);
+					
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					
+
 		
-					Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+			Clone = (GameObject)Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 
 					bulDirection = new Vector3(.4f,.4f,0);
 					print ("pos pos" + bulDirection);
 
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 	
 
 		
-					Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+			Clone = (GameObject)Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 
 					bulDirection = new Vector3(-.4f,.4f,0);
 					print ("neg pos"+bulDirection);
 
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 
 
 		
-					Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+			Clone = (GameObject)Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 
 					bulDirection = new Vector3(.4f,-.4f,0);
 					print ("pos neg" + bulDirection);
 
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 
-
-
-					Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
-
-					bulDirection = new Vector3(-.4f,-.4f,0);
-
-					print ("neg neg" + bulDirection);
-
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
-
-
-
-			shootTimer = Time.time;
+						shootTimer = Time.time;
+					
 		}
 
 		//delete here
 		if (enemyHealth <= 0) { 
-			Destroy (gameObject);
-		}
-
-		if (transform.position.y < -10f) {
 			Destroy (gameObject);
 		}
 

@@ -24,22 +24,22 @@ public class HealthKeeper : MonoBehaviour {
 	void UpdateHealth()
 	{
 		if (playerHP == 5) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (0,255,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (55, 230, 55, 255);
 		}
 		if (playerHP == 4) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (128,255,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (115, 235, 115, 255);
 		}
 		if (playerHP == 3) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (255,255,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (145, 240, 145, 255);
 		}
 		if (playerHP == 2) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (255,128,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (175, 245, 175, 255);
 		}
 		if (playerHP == 1) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (255,0,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (210, 250, 210, 255);
 		}
 		if (playerHP == 0) {
-			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (255,0,0,255);
+			healthText.gameObject.GetComponent<GUIText> ().color = new Color32 (255, 255, 255, 255);
 		}
 
 		healthText.text = "Health: " + playerHP + "/5";

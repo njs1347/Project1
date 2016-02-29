@@ -156,19 +156,19 @@ public class TriangleScript : MonoBehaviour {
 		//ENEMY SHOOTING
 		if (shootTimer + 2.25f < Time.time && canIShoot) {
 			for(int i = 0;i<3;i++){
-				Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
+				GameObject Clone = (GameObject)Instantiate (bullet, new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, 0), Quaternion.identity);
 				if (i == 0) {
 					//bullet.transform.LookAt(corner1.transform);
 					bulDirection = (corner1.transform.position - transform.position).normalized;
 					print (bulDirection);
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 				else if (i == 1) {
 					//bullet.transform.LookAt(corner2.transform);
 					//bullet.GetComponent<EnemyBulletScript>().targetPos = corner2.transform.position;
 					bulDirection = (corner2.transform.position - transform.position).normalized;
 					print (bulDirection);
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 				else if(i==2){
 					//bullet.transform.LookAt(corner3.transform);
@@ -178,7 +178,7 @@ public class TriangleScript : MonoBehaviour {
 
 					bulDirection = (corner3.transform.position - transform.position).normalized;
 					print (bulDirection);
-					bullet.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
+					Clone.GetComponent<EnemyBulletScript> ().targetPos = bulDirection;
 				}
 			}
 
