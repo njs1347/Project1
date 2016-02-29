@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpawnerScript : MonoBehaviour {
 	//Which enemy to spawn
-	int spawnNumber = 1;
+	int spawnNumber = 100;
 
 	//Time counter for spawns
 	float spawnTimer = 2;
@@ -25,6 +25,9 @@ public class SpawnerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
 		score = ScoreKeeper.GetComponent<ScoreKeeper>().score;
 		if (score >= 500 && score<749) {
 			spawnCooldown = 1.50f;
@@ -48,8 +51,12 @@ public class SpawnerScript : MonoBehaviour {
 
 
 		if (Time.time > spawnTimer) {
+
+			spawnNumber = Random.Range (1,101);
+			//spawnNumber = 15;
+
 			spawnTimer += spawnCooldown;
-			if (spawnNumber == 1) {
+			if (spawnNumber >=25 ) {
 				//SPAWN TRIANGLE ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);
 				Instantiate(triangle,
@@ -58,7 +65,7 @@ public class SpawnerScript : MonoBehaviour {
 				
 			}
 
-			if (spawnNumber == 2) {
+			if (spawnNumber <25) {
 				//SPAWN BOMBER ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);
 				Instantiate(bomber,
