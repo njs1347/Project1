@@ -20,7 +20,7 @@ public class BomberScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		TimeSpawned = Time.time;
-		shootTimer = Time.time;
+		shootTimer = Time.time - 3f;
 
 		GameObject scoreKeeperObject = GameObject.FindWithTag ("ScoreKeeper");
 		if (scoreKeeperObject != null) {

@@ -41,7 +41,7 @@ public class PlayerBulletScript : MonoBehaviour {
 	
 	}
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "EnemyBullet" || coll.gameObject.tag == "Enemy") {
+		if (coll.gameObject.tag == "Enemy") {
 			Destroy (gameObject);
 		}
 	}

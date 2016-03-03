@@ -45,8 +45,8 @@ public class EnemyBulletScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		if (coll.gameObject.tag == "PlayerBullet") {
-			scoreKeeper.AddScoreSmall ();
-			Destroy (gameObject);
+			//scoreKeeper.AddScoreSmall ();
+			//Destroy (gameObject);
 
 		}
 
