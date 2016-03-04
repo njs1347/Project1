@@ -88,8 +88,10 @@ public class BomberScript : MonoBehaviour {
 		if (coll.gameObject.tag == "PlayerBullet") {
 			onHit ();
 		}
-		if (coll.gameObject.tag == "Player") {
-			enemyHealth = 0;
+		if (TimeSpawned + 2f < Time.time) {
+			if (coll.gameObject.tag == "Player") {
+				enemyHealth = 0;
+			}
 		}
 	}
 

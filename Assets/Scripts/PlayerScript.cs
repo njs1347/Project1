@@ -39,7 +39,7 @@ public class PlayerScript : MonoBehaviour {
 	void Update ()
 	{
 		Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-		if (Input.GetButtonDown("Fire1")) {
+		if (Input.GetButtonDown("Fire1") ) {
 
 			GameObject bul = (GameObject)Instantiate (PlayerBullet);
 			bul.transform.position = transform.position;
