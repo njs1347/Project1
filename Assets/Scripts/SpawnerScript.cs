@@ -76,4 +76,11 @@ public class SpawnerScript : MonoBehaviour {
 
 		}
 	}
+
+	public void SpawnerReset()
+	{
+		spawnNumber = 100;
+		spawnTimer = 2;
+		spawnCooldown = 2;
+	}
 }

@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
 	public GameObject PlayerBullet;
 	public GameObject BulletPosition;
 	private HealthKeeper healthKeeper;
+	private SpawnerScript spawnerScript;
 	public GUIText youLoseText;
 
 	public float playerHealth = 5.0f;
 
 	Vector3 mousePosition;
 	Vector3 direction;
+
+	private GameObject PlayAgain;
 
 
 
@@ -26,6 +30,9 @@ public class PlayerScript : MonoBehaviour {
 		if (healthKeeper == null) {
 			Debug.Log ("Can't find 'HealthKeeper' script");
 		}
+
+		spawnerScript = GetComponent<SpawnerScript> ();
+		PlayAgainButton ();
 
 	}
 
@@ -72,6 +79,7 @@ public class PlayerScript : MonoBehaviour {
 			youLoseText.text = "YOU LOSE";
 			Destroy (gameObject);
 			print ("you lose");
+			PlayAgain.SetActive (true);
 
 		}
 
@@ -119,5 +127,22 @@ public class PlayerScript : MonoBehaviour {
 			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
 		}
 
+	}
+
+	void PlayAgainButton()
+	{
+		PlayAgain = GameObject.Find ("GameManager").GetComponent<GameManagers> ().PlayAgain;
+		PlayAgain.GetComponent<Button> ().onClick.AddListener (GameOverCommence);
+	}
+
+	public void LoadScene(int level)
+	{
+		//loadingImage.SetActive(true);
+		Application.LoadLevel(level);
+	}
+
+	void GameOverCommence()
+	{
+		spawnerScript.SpawnerReset ();
 	}
 }

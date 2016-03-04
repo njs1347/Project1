@@ -44,5 +44,5 @@ public class HealthKeeper : MonoBehaviour {
 
 		healthText.text = "Health: " + playerHP + "/5";
 	}
-
+		
 }
