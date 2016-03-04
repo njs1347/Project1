@@ -19,7 +19,7 @@ public class SpawnerScript : MonoBehaviour {
 	int score;
 	// Use this for initialization
 	void Start () {
-
+		spawnTimer = Time.time + spawnCooldown;
 	
 	}
 	
@@ -69,7 +69,7 @@ public class SpawnerScript : MonoBehaviour {
 				//SPAWN BOMBER ENEMY
 				//GameObject triangle = new GameObject(Random.Range(-8,8),9);
 				Instantiate(bomber,
-					new Vector3(Random.Range(-16,16),Random.Range(-7,7),0),
+					new Vector3(Random.Range(-14,14),Random.Range(-7,7),0),
 					Quaternion.identity);
 
 			}

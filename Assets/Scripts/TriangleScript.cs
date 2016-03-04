@@ -217,11 +217,11 @@ public class TriangleScript : MonoBehaviour {
 		enemyHealth--;
 
 		if (enemyHealth == 2) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 0.5f, 0, 1);
+			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1f, 0.5f, 0f, 1f);
 		}
 
 		if (enemyHealth == 1) {
-			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1, 0, 0, 1);
+			this.gameObject.GetComponent<SpriteRenderer> ().color = new Color (1f, 0.92f, 0.016f, 1f);
 		}
 	}
 }

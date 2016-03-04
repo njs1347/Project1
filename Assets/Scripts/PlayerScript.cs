@@ -79,16 +79,17 @@ public class PlayerScript : MonoBehaviour {
 			youLoseText.text = "YOU LOSE";
 			Destroy (gameObject);
 			print ("you lose");
+			//youLoseText.enabled = true;
 			PlayAgain.SetActive (true);
 
 		}
 
 		//OUT OF BOUNDS CHECK
-		if (transform.position.x > 18f) {
-			transform.position = new Vector3(18f,transform.position.y,0);
+		if (transform.position.x > 15f) {
+			transform.position = new Vector3(15f,transform.position.y,0);
 		}
-		if (transform.position.x < -18f) {
-			transform.position = new Vector3(-18f,transform.position.y,0);
+		if (transform.position.x < -15f) {
+			transform.position = new Vector3(-15f,transform.position.y,0);
 		}
 		if (transform.position.y > 8f) {
 			transform.position = new Vector3(transform.position.x,8f,0);
